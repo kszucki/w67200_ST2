@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Insurance add user</title>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <!-- Brand -->
+    <a class="navbar-brand" href="#">Insurance Company</a>
+
+    <!-- Toggler/collapsibe Button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar links -->
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/users}">Users list</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/policies}">Policies list</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<br>
+<br>
+<br>
+<div class = "container">
+    <div class = "row">
+        <div class = "col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+            <h1 class = "text-center"> Edytuj uzytkownika </h1>
+            <div class ="card-body">
+                <form th:action="@{/users/{id} (id = ${user.idUsers})}" th:object="${user}" method="post">
+                    <div class = "form-group">
+                        <label>Imie</label>
+                        <input
+                                type = "text"
+                                name = "firstName"
+                                th:field="*{firstName}"
+                                class = "form-control"
+                                placeholder="Wprowadz imie...">
+                    </div>
+
+                    <div class = "form-group">
+                        <label>Nazwisko</label>
+                        <input
+                                type = "text"
+                                name = "lastName"
+                                th:field= "*{lastName}"
+                                class = "form-control"
+                                placeholder="Wprowadz nazwisko...">
+                    </div>
+
+                    <div class = "form-group">
+                        <label>Pesel</label>
+                        <input
+                                type = "text"
+                                name = "pesel"
+                                th:field="*{pesel}"
+                                class = "form-control"
+                                placeholder="Wprowadz pesel...">
+                    </div>
+
+                    <div class = "form-group">
+                        <label>Adres</label>
+                        <input
+                                type = "text"
+                                name = "address"
+                                th:field="*{address}"
+                                class = "form-control"
+                                placeholder="Wprowadz adres...">
+                    </div>
+
+                    <div class = "form-group">
+                        <label>Email</label>
+                        <input
+                                type = "text"
+                                name = "email"
+                                th:field="*{email}"
+                                class = "form-control"
+                                placeholder="Wprowadz email...">
+                    </div>
+
+                    <div class = "footer-body">
+                        <button type = "submit" class = "btn btn-primary">
+                            Aktualizuj
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

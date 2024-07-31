@@ -1,0 +1,105 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8">
+  <title>Polisy</title>
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#">Insurance Company</a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/users}">Users list</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/policies}">Policies list</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class = "container">
+  <div class = "row">
+    <h1> Polisy klienta: </h1>
+  </div>
+  <div class = "row">
+    <div class = "col-lg-3">
+      <a th:href = "@{/users/{id}/policy (id = ${user.idUsers})}" class = "btn btn-primary btn-sm mb-3">Dodaj</a>
+    </div>
+    <div class = "col-lg-3">
+      <a th:href = "@{/users}" class = "btn btn-primary btn-sm mb-3">Powrot</a>
+    </div>
+  </div>
+  <table class = "table align-content-lg-center table-striped table-bordered">
+    <thead class = "table-dark" style="vertical-align: middle">
+    <tr>
+      <th style="text-align:center;vertical-align: middle;">Współwłaściciel<br></th>
+      <th style="text-align:center;vertical-align: middle">
+        Ubezpieczalnia<br>
+        Numer Polisy<br>
+        Znizka<br>
+      </th>
+      <th style="text-align:center;vertical-align: middle">
+        Data zaw. umowy<br>
+        Data konca umowy<br>
+        Termin wplaty raty<br>
+      </th>
+      <th style="text-align:center;vertical-align: middle">
+        Rodzaj pojazdu<br>
+        Numer Rejestracyjny<br>
+      </th>
+      <th style="text-align:center;vertical-align: middle">Akcja</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each = "policy: ${InsPolicy}">
+      <td>
+        <div>
+          <span th:text="${policy.coOwnFirstName}"></span><br/>
+          <span th:text="${policy.coOwnLastName}"></span><br/>
+        </div>
+      </td>
+      <td>
+        <div>
+          <span th:text="${policy.insuranceComp}"></span><br/>
+          <span th:text="${policy.policyNumber}"></span><br/>
+          <span th:text="${policy.discount}"></span><br/>
+        </div>
+      </td>
+      <td>
+        <div>
+          <span th:text="${#dates.format(policy.startDate, 'dd-MM-yyyy')}"></span><br/>
+          <span th:text="${#dates.format(policy.endDate, 'dd-MM-yyyy')}"></span><br/>
+          <span th:text="${#dates.format(policy.installmentDate, 'dd-MM-yyyy')}"></span><br/>
+        </div>
+      </td>
+      <td>
+        <div>
+          <span th:text="${policy.vehicleType}"></span><br/>
+          <span th:text="${policy.regNumber}"></span><br/>
+        </div>
+      </td>
+      <td>
+        <a th:href = "@{/users/{userId}/policy/{policyId}(userId = ${user.idUsers},policyId = ${policy.idPolicy})}" class = "btn btn-primary">Edytuj</a>
+        <a th:href = "@{/users/{id}(id = ${user.idUsers})}" class = "btn btn-danger">Usun</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

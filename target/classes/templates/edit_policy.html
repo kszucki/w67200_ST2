@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Insurance add user</title>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <!-- Brand -->
+    <a class="navbar-brand" href="#">Insurance Company</a>
+
+    <!-- Toggler/collapsibe Button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar links -->
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/users}">Users list</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/policies}">Policies list</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<br>
+<br>
+<br>
+<div class = "container">
+    <div class = "row">
+        <div class = "container justify-content-center card">
+            <h1 class = "text-center">Edycja</h1>
+                <div class ="card-body">
+                    <form th:action="@{/policies/{id} (id = ${InsPolicy.idPolicy})}" th:object="${InsPolicy}" method="post">
+
+                        <h2 class="text-center"> Dane wspolwlasciciela</h2>
+                        <div class = "form-group">
+                            <label>Imie Wspolwlasciciela</label>
+                            <input
+                                    type = "text"
+                                    name = "coOwnFirstName"
+                                    th:field="*{coOwnFirstName}"
+                                    class = "form-control"
+                                    placeholder="Wprowadz imie...">
+                        </div>
+
+                        <div class = "form-group">
+                            <label>Nazwisko Wspolwlasciciela</label>
+                            <input
+                                    type = "text"
+                                    name = "coOwnLastName"
+                                    th:field="*{coOwnLastName}"
+                                    class = "form-control"
+                                    placeholder="Wprowadz nazwisko...">
+                        </div>
+
+                        <h2 class="text-center"> Dane polisy</h2>
+                        <div class = "form-group">
+                            <label>Ubezpieczalnia</label>
+                            <input
+                                    type = "text"
+                                    name = "InsuranceComp"
+                                    th:field="*{insuranceComp}"
+                                    class = "form-control"
+                                    placeholder="Wprowadz nazwe ubezpieczalni...">
+                        </div>
+
+                        <div class = "form-group">
+                            <label>Notka</label>
+                            <input
+                                    type = "text"
+                                    name = "discount"
+                                    th:field="*{discount}"
+                                    class = "form-control"
+                                    placeholder="Wprowadz cos...">
+                        </div>
+
+                        <div class = "form-group">
+                            <label>Numer Polisy</label>
+                            <input
+                                    type = "text"
+                                    name = "policyNumber"
+                                    th:field="*{policyNumber}"
+                                    class = "form-control"
+                                    placeholder="Wprowadz numer polisy...">
+                        </div>
+
+                        <div class = "form-group">
+                            <label>Typ Pojazdu</label>
+                            <input
+                                    type = "text"
+                                    name = "VehicleType"
+                                    th:field="*{vehicleType}"
+                                    class = "form-control"
+                                    placeholder="Wprowadz typ pojazdu...">
+                        </div>
+
+                        <div class = "form-group">
+                            <label>Numer Rejestracyjny</label>
+                            <input
+                                    type = "text"
+                                    name = "RegNumber"
+                                    th:field="*{regNumber}"
+                                    class = "form-control"
+                                    placeholder="Wprowadz numer reje...">
+                        </div>
+
+                        <div class = "form-group">
+                            <label>Data zawarcia</label>
+                            <input
+                                    type = "date"
+                                    name = "startDate"
+                                    th:field="*{startDate}"
+                                    class = "form-control"
+                            >
+                        </div>
+
+                        <div class = "form-group">
+                            <label>Data konca</label>
+                            <input
+                                    type = "date"
+                                    name = "endDate"
+                                    th:field="*{endDate}"
+                                    class = "form-control"
+                            >
+                        </div>
+
+                        <div class = "form-group">
+                            <label>Data raty</label>
+                            <input
+                                    type = "date"
+                                    name = "installmentDate"
+                                    th:field="*{installmentDate}"
+                                    class = "form-control"
+                            >
+                        </div>
+
+                        <div class = "footer-body">
+                            <button type = "submit" class = "btn btn-primary">
+                                Aktualizuj
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
